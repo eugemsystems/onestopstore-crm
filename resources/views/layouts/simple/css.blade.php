@@ -78,10 +78,33 @@
 
     .table > thead {
         vertical-align: bottom;
-        background-color: rgb(36, 68, 126);
+        background-color: var(--theme-deafult);
 
     }
     .table th{
         color: white !important;
+    }
+
+    /* Sidebar redesign: clearer section grouping, subtler section titles,
+       consistent icon sizing across the mixed sprite-icon / inline-SVG menu items. */
+    .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li.sidebar-main-title {
+        margin-top: 22px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li.sidebar-main-title:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+    .page-wrapper .sidebar-main-title h6 {
+        opacity: 0.65;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li .sidebar-link svg {
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
     }
 </style>

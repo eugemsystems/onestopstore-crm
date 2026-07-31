@@ -115,7 +115,7 @@
 
  */
 :root {
-  --theme-deafult: #24447d;
+  --theme-deafult: #d32f2f;
   --theme-secondary: #FE6A49;
   --light-background: rgba(242, 243, 247, 0.7);
   --body-font-color: #86909C;
@@ -6368,8 +6368,8 @@ body.modal-open .select2-container--open .select2-dropdown {
 }
 
 .btn-primary-gradien {
-  background-image: -webkit-gradient(linear, left top, right top, from(#24447dFF), color-stop(51%, #042661), to(#24447dFF));
-  background-image: linear-gradient(to right, #24447dFF 0%, #042661 51%, #24447dFF 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(#d32f2fFF), color-stop(51%, #7f0000), to(#d32f2fFF));
+  background-image: linear-gradient(to right, #d32f2fFF 0%, #7f0000 51%, #d32f2fFF 100%);
   border: none;
   color: #fff;
   background-size: auto 200%;
@@ -6381,8 +6381,8 @@ body.modal-open .select2-container--open .select2-dropdown {
   -webkit-transition: 1.5s;
   transition: 1.5s;
   background-position: right center;
-  background-image: -webkit-gradient(linear, left top, right top, from(#24447dFF), color-stop(0%), color-stop(#042661), color-stop(100%), to(#fff)) !important;
-  background-image: linear-gradient(to right, #24447dFF, 0%, #042661, 100%, #fff) !important;
+  background-image: -webkit-gradient(linear, left top, right top, from(#d32f2fFF), color-stop(0%), color-stop(#7f0000), color-stop(100%), to(#fff)) !important;
+  background-image: linear-gradient(to right, #d32f2fFF, 0%, #7f0000, 100%, #fff) !important;
 }
 
 .btn-secondary-gradien {
