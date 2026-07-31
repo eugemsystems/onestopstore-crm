@@ -76,6 +76,14 @@ COPY conf/www.conf /usr/local/etc/php-fpm.d/www.conf
 # --- COPY custom php.ini for upload limits and performance ---
 COPY conf/custom-php.ini /usr/local/etc/php/conf.d/custom-php.ini
 
+# Re-applies www-data ownership on storage/bootstrap/cache at CONTAINER START
+# (not just build time) — compose bind-mounts the host repo over /var/www/html
+# at runtime, which replaces the chown above with whatever UID owns the files
+# on the host. Without this, www-data can't write logs/cache/sessions.
+COPY docker-entrypoint-app.sh /usr/local/bin/docker-entrypoint-app.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint-app.sh
+ENTRYPOINT ["docker-entrypoint-app.sh"]
+
 # Expose PHP-FPM port (used by Nginx)
 EXPOSE 9000
 
