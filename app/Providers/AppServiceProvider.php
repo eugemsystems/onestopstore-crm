@@ -32,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Force HTTPS only in development environments
-        if ($this->app->environment('local')) {
+        // if ($this->app->environment('local')) {
+        if (true) {
             URL::forceScheme('https');
         }
 
