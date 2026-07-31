@@ -1,0 +1,7 @@
+.git
+.idea
+.qodo
+node_modules
+vendor
+.env
+.env.example
