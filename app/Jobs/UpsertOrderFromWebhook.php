@@ -167,6 +167,14 @@ class UpsertOrderFromWebhook implements ShouldQueue
                         $attrHash = crc32(implode(',', $selectedAttrIds)) & 0x7FFFFFFF; // Keep positive
                     }
 
+                    // Delivery option: two options of the same product (same attributes) must not
+                    // collapse into one CRM row, so mix the option id into the hash. Items without an
+                    // option keep exactly the same id as before.
+                    $deliveryOptionId = $it['delivery_option_id'] ?? $it['pivot']['delivery_option_id'] ?? null;
+                    if (!empty($deliveryOptionId)) {
+                        $attrHash = crc32($attrHash . '|opt' . (int) $deliveryOptionId) & 0x7FFFFFFF;
+                    }
+
                     // Generate composite ID: order_id + product_id + variation_id + attribute_hash
                     // This ensures each unique attribute combination gets a separate item
                     $baseId = ($oid * 1000000) + ($pid % 1000000);
@@ -361,6 +369,13 @@ class UpsertOrderFromWebhook implements ShouldQueue
                     // Map estimated_delivery_text field
                     if (in_array('estimated_delivery_text', $itemCols) && isset($it['estimated_delivery_text'])) {
                         $payload['estimated_delivery_text'] = $it['estimated_delivery_text'];
+                    }
+
+                    // Map the delivery option chosen by the customer (label/text/price are a snapshot)
+                    foreach (['delivery_option_id', 'delivery_option_label', 'delivery_option_text', 'delivery_option_price'] as $optCol) {
+                        if (in_array($optCol, $itemCols) && isset($it[$optCol])) {
+                            $payload[$optCol] = $it[$optCol];
+                        }
                     }
 
                     // Try to derive a thumbnail url; preserve existing if webhook doesn't provide enough data

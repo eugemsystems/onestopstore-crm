@@ -264,7 +264,7 @@ new class extends Component
                   <div class=\"d-flex justify-content-between align-items-start\">
                     <div>
                       <div class=\"fw-semibold\">${it.name || ('SKU: ' + it.sku)}</div>
-                      <div class=\"small text-muted\">SKU: ${it.sku}${it.variation_id ? ' • Var: ' + it.variation_id : ''}</div>
+                      <div class=\"small text-muted\">SKU: ${it.sku}${it.variation_id ? ' • Var: ' + it.variation_id : ''}${it.delivery_option_label ? ' • ' + it.delivery_option_label + (it.delivery_option_text ? ' (' + it.delivery_option_text + ')' : '') : ''}</div>
                     </div>
                     <div class=\"text-end\">
                       <div class=\"fw-semibold\">${o.currency || '$'} ${subtotal.toFixed(2)}</div>

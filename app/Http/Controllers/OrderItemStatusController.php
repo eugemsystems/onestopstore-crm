@@ -57,6 +57,7 @@ class OrderItemStatusController extends Controller
             $apiData = [
                 'product_id' => $orderProduct->product_id,
                 'variation_id' => $orderProduct->variation_id,
+                'delivery_option_id' => $orderProduct->delivery_option_id ?? null,
                 'item_status' => $validated['item_status'],
                 'cancellation_reason' => $validated['cancellation_reason'] ?? null,
                 'eta' => $validated['eta'] ?? null,

@@ -586,6 +586,9 @@ new #[Layout('layouts.simple.master')] class extends Component
                         } catch(_) {}
                         const variationLine = variationText ? `<div class=\"mt-1\"><span class=\"badge text-bg-primary text-white\">${variationText}</span></div>` : '';
 
+                        // Delivery option chosen by the customer
+                        const deliveryOptionLine = it.delivery_option_label ? `<div class=\"mt-1\"><span class=\"badge bg-info-subtle text-info-emphasis\"><i class=\"bi bi-lightning-charge\"></i> ${it.delivery_option_label}${it.delivery_option_text ? ' · ' + it.delivery_option_text : ''}</span></div>` : '';
+
                         // Estimated delivery text
                         const estimatedDelivery = it.estimated_delivery_text ? `<div class=\"mt-1\"><span class=\"badge bg-info text-white\"><i class=\"bi bi-clock\"></i> ${it.estimated_delivery_text}</span></div>` : '';
 
@@ -598,6 +601,7 @@ new #[Layout('layouts.simple.master')] class extends Component
                                     <div>
                                       <div class=\"fw-semibold\">${it.name || ('SKU: ' + (it.sku || ''))}</div>
                                       ${variationLine}
+                                      ${deliveryOptionLine}
                                       ${estimatedDelivery}
                                       <div class=\"small text-muted\">SKU: ${it.sku || ''}</div>
                                       <div class=\"small text-muted\">${(it.status && it.status !== '--') ? ('Status: ' + it.status) : ''}${it.eta ? ((it.status && it.status !== '--') ? ' • ' : '') + 'ETA: ' + (typeof it.eta === 'string' ? it.eta : safeDate(it.eta)) : ''}</div>

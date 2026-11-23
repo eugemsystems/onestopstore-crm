@@ -41,6 +41,9 @@
                         @elseif($item->variation_id)
                             <span class="badge bg-secondary-subtle text-secondary ms-1">Var: {{ $item->variation_id }}</span>
                         @endif
+                        @if(!empty($item->delivery_option_label))
+                            <span class="badge bg-info-subtle text-info-emphasis ms-1"><i class="bi bi-lightning-charge"></i> {{ $item->delivery_option_label }}{{ !empty($item->delivery_option_text) ? ' · '.$item->delivery_option_text : '' }}</span>
+                        @endif
                     </div>
 
                     @if($item->cancellation_reason)

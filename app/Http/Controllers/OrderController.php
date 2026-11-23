@@ -168,6 +168,7 @@ class OrderController extends Controller
                                 ->put($base . '/api/order/' . $externalOrderIdentifier . '/item-status', [
                                     'product_id' => $item->product_id,
                                     'variation_id' => $item->variation_id,
+                                    'delivery_option_id' => $item->delivery_option_id ?? null,
                                     'item_status' => $newItemStatus,
                                 ]);
                         } 

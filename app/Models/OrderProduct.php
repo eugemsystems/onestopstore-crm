@@ -20,6 +20,7 @@ class OrderProduct extends Model
         'variation_attributes'        => 'array',
         'has_fast_shipping'           => 'boolean',
         'selected_attribute_ids'      => 'array',
+        'delivery_option_price'       => 'decimal:2',
         'inventory_transferred_at'    => 'datetime',
     ];
 

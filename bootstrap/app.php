@@ -12,6 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // The app runs behind a reverse proxy (Traefik/nginx) that terminates https. Trust its
+        // X-Forwarded-* headers so asset()/url() generate https:// links instead of http://
+        // (which the browser blocks as mixed content / the proxy 404s).
+        $middleware->trustProxies(at: '*');
+
         $middleware->alias([
             'active' => \App\Http\Middleware\EnsureAccountIsActive::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,

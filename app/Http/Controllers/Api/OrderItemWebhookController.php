@@ -19,6 +19,7 @@ class OrderItemWebhookController extends Controller
             'order_id' => 'required|integer',
             'product_id' => 'required|integer',
             'variation_id' => 'nullable|integer',
+            'delivery_option_id' => 'nullable|integer',
             'item_status' => 'required|string',
             'cancellation_reason' => 'nullable|string',
             'eta' => 'nullable|date',
@@ -38,6 +39,10 @@ class OrderItemWebhookController extends Controller
             // Strategy 1: Try exact match with product_id and variation_id
             $orderProduct = $order->order_items()
                 ->where('product_id', $validated['product_id'])
+                ->when(
+                    !empty($validated['delivery_option_id']),
+                    fn($q) => $q->where('delivery_option_id', $validated['delivery_option_id'])
+                )
                 ->when(
                     isset($validated['variation_id']) && $validated['variation_id'] !== null,
                     fn($q) => $q->where('variation_id', $validated['variation_id']),

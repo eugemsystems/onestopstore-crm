@@ -16,6 +16,9 @@
                         @if($orderItem->variation_display)
                             <div class="text-muted small">{{ $orderItem->variation_display }}</div>
                         @endif
+                        @if(!empty($orderItem->delivery_option_label))
+                            <div class="text-info-emphasis small"><i class="bi bi-lightning-charge"></i> {{ $orderItem->delivery_option_label }}{{ !empty($orderItem->delivery_option_text) ? ' · '.$orderItem->delivery_option_text : '' }}</div>
+                        @endif
                     </div>
 
                     <div class="mb-3">

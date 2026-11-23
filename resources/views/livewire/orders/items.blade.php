@@ -354,6 +354,7 @@ new class extends Component {
                         $apiData = [
                             'product_id' => $item->product_id,
                             'variation_id' => $item->variation_id,
+                            'delivery_option_id' => $item->delivery_option_id ?? null,
                             'item_status' => $normalizedStatus,
                         ];
 
@@ -826,6 +827,7 @@ new class extends Component {
                                 $ordersApi->updateItemStatus((string)$order->order_number, [
                                     'product_id' => $item->product_id,
                                     'variation_id' => $item->variation_id,
+                                    'delivery_option_id' => $item->delivery_option_id ?? null,
                                     'item_status' => $itemStatus,
                                     'eta' => $item->eta ? ($item->eta instanceof \Carbon\Carbon ? $item->eta->format('Y-m-d') : $item->eta) : null,
                                 ], auth()->user()?->email);
@@ -1434,6 +1436,9 @@ new class extends Component {
                                                     <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;">
                                                         @if(!empty($variationText))
                                                             <span style="border:1.5px solid #4f46e5;color:#4f46e5;background:transparent;font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:50px;"><i class="bi bi-palette2"></i>&nbsp;{{ $variationText }}</span>
+                                                        @endif
+                                                        @if(!empty($it->delivery_option_label))
+                                                            <span style="border:1.5px solid #0891b2;color:#0e7490;background:#ecfeff;font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:50px;"><i class="bi bi-lightning-charge"></i>&nbsp;{{ $it->delivery_option_label }}{{ !empty($it->delivery_option_text) ? ' · '.$it->delivery_option_text : '' }}</span>
                                                         @endif
                                                         @if($it->has_fast_shipping || ($it->fast_shipping_cost ?? 0) > 0)
                                                             <span style="border:1.5px solid #b45309;color:#b45309;background:transparent;font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:50px;">&#9889;&nbsp;Express 3&#8211;4d</span>

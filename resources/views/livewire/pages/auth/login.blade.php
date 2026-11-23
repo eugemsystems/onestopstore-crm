@@ -24,7 +24,9 @@ new class extends Component {
         //Cache user data
         getCachedAuthUser();
 
-        $this->redirectIntended(default: route('app.dashboard', absolute: false), navigate: true);
+        // Full page load (not wire:navigate): the dashboard uses a different layout whose sidebar
+        // scripts (simplebar, sidebar-menu) only initialise correctly on a normal page load.
+        $this->redirectIntended(default: route('app.dashboard', absolute: false), navigate: false);
     }
 }; ?>
 

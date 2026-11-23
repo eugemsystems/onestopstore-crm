@@ -346,6 +346,14 @@
                             </div>
                         @endif
 
+                        @if(!empty($it->delivery_option_label))
+                            <div style="margin-top: 4px;">
+                                <span style="display:inline-block;background:#ecfeff;color:#0e7490;border:1px solid #a5f3fc;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600;">
+                                    🚚 {{ $it->delivery_option_label }}{{ !empty($it->delivery_option_text) ? ' · ' . $it->delivery_option_text : '' }}
+                                </span>
+                            </div>
+                        @endif
+
                         @if($hasFastShipping)
                             <div style="margin-top: 4px;">
                                 <span class="fast-badge">
